@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Restaurante</string>
+
+    <string name="TITULO_INICIO">RESTAURANTE</string>
+    <string name="TITULO_LOGIN">RESTAURANTE</string>
+    <string name="TITULO_REGISTRARSE">RESTAURANTE</string>
+    <string name="TITULO_ADMINISTRACION">ADMINISTRACION</string>
+    <string name="TITULO_MI_CUENTA">MI CUENTA</string>
+    <string name="TITULO_NUEVO_DELIVERY">NUEVO DELIVERY</string>
+    <string name="TITULO_NUEVO_EMPLEADO">NUEVO EMPLEADO</string>
+    <string name="TITULO_NUEVO_PRODUCTO">NUEVO PRODUCTO</string>
+    <string name="TITULO_NUEVO_PEDIDO">NUEVO PEDIDO</string>
+    <string name="TITULO_MIS_PEDIDOS">MIS PEDIDOS</string>
+
+    <string name="PLACEHOLDER_NOMBRE_COMPLETO">Nombre completo</string>
+    <string name="PLACEHOLDER_DNI">DNI</string>
+    <string name="PLACEHOLDER_DIRECCION">Dirección</string>
+    <string name="PLACEHOLDER_TELEFONO">Teléfono</string>
+    <string name="PLACEHOLDER_CATEGORIA">Categoría</string>
+    <string name="PLACEHOLDER_NOMBRE_PRODUCTO">Nombre</string>
+    <string name="PLACEHOLDER_PRECIO">Precio</string>
+    <string name="PLACEHOLDER_LINK_IMAGEN_PRODUCTO">Link imagen</string>
+    <string name="PLACEHOLDER_CORREO_ELECTRONICO">Correo electrónico</string>
+    <string name="PLACEHOLDER_CONTRASENA">Contraseña</string>
+
+    <string name="TEXTO_INICIAR_SESION">Iniciar sesión</string>
+    <string name="TEXTO_SIN_CUENTA_REGISTRATE">No tienes cuenta? Regístrate</string>
+    <string name="TEXTO_MENSAJE_SESION_NO_INICIADA">Debes iniciar sesión para realizar nuevos pedidos!</string>
+    <string name="TEXTO_PRODUCTOS">PRODUCTOS</string>
+    <string name="TEXTO_UBICACION">UBICACIÓN</string>
+    <string name="TEXTO_CONTACTO">CONTACTO</string>
+    <string name="TEXTO_NUMERO_WHATSAPP">+549 3496 000000</string>
+    <string name="TEXTO_NUMERO_TELEFONO_FIJO">+54 03496 000000</string>
+
+    <string name="TEXTO_DNI_EMPLEADO_TEMPLATE">DNI: %s</string>
+    <string name="TEXTO_DIR_EMPLEADO_TEMPLATE">DIR: %s</string>
+    <string name="TEXTO_TEL_EMPLEADO_TEMPLATE">TEL: %s</string>
+    <string name="TEXTO_ID_TEMPLATE">#%s</string>
+    <string name="TEXTO_PRECIO_PRODUCTO_TEMPLATE">$%s</string>
+    <string name="TEXTO_PEDIDO_NUMERO_TEMPLATE">PEDIDO Nº%s</string>
+    <string name="TEXTO_PRODUCTO_PEDIDO_TEMPLATE">%s (%s)</string>
+    <string name="TEXTO_TOTAL_PEDIDO_TEMPLATE">TOTAL $%s</string>
+
+    <string name="BOTON_GUARDAR">GUARDAR</string>
+    <string name="BOTON_INICIAR_SESION">INICIAR SESION</string>
+    <string name="BOTON_CONTINUAR">CONTINUAR</string>
+    <string name="BOTON_REGISTRARSE">REGISTRARSE</string>
+    <string name="BOTON_CERRAR_SESION">CERRAR SESION</string>
+
+    <string name="BOTTOMBAR_TITULO_PRODUCTOS">Productos</string>
+    <string name="BOTTOMBAR_TITULO_EMPLEADOS">Empleados</string>
+    <string name="BOTTOMBAR_TITULO_DELIVERY">Delivery</string>
+
+    <string name="MARCADOR_GMAPS_TITULO">Restaurante</string>
+    <string name="MARCADOR_GMAPS_DESCRIPCION">Ubicación del Restaurante</string>
+</resources>
