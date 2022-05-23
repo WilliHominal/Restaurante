@@ -16,8 +16,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.warh.restaurante.ui.screens.Pedido
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Pedido
 
 @Composable
 fun OrderCardView(

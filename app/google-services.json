@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1013014480557",
+    "project_id": "restaurante-350522",
+    "storage_bucket": "restaurante-350522.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013014480557:android:6a7ffa95a0e775c5dba824",
+        "android_client_info": {
+          "package_name": "com.warh.restaurante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013014480557-tnkdenuq8mlj240h736rc7lbkfpanl7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.warh.restaurante",
+            "certificate_hash": "84950c972652dfd4478dbec2794f8f276796f3a0"
+          }
+        },
+        {
+          "client_id": "1013014480557-fktsrcejq7dr5or78k58qgjt14l1kbg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC80MOZ4AmIaqWDpsc0YRAespi3GhcqNcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013014480557-fktsrcejq7dr5or78k58qgjt14l1kbg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

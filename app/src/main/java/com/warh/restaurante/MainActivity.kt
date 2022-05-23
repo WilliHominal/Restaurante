@@ -3,6 +3,7 @@ package com.warh.restaurante
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,18 +11,23 @@ import androidx.navigation.compose.rememberNavController
 import com.warh.restaurante.ui.screens.*
 import com.warh.restaurante.ui.theme.RestauranteTheme
 import com.warh.restaurante.utils.Screens
+import com.warh.restaurante.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RestauranteTheme { NavigationHost() }
+            val viewModel by viewModels<UserViewModel>()
+
+            RestauranteTheme { NavigationHost(viewModel) }
         }
     }
 }
 
 @Composable
-fun NavigationHost(){
+fun NavigationHost(viewModel: UserViewModel){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Screens.HomeScreen.route){
@@ -29,10 +35,10 @@ fun NavigationHost(){
             HomeScreen(navController)
         }
         composable(Screens.LoginScreen.route){
-            LoginScreen(navController)
+            LoginScreen(navController, viewModel)
         }
         composable(Screens.RegisterScreen.route){
-            RegisterScreen(navController)
+            RegisterScreen(navController, viewModel)
         }
         composable(Screens.NewOrderScreen.route){
             NewOrderScreen(navController)
