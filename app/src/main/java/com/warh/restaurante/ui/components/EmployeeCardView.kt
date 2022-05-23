@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.warh.restaurante.ui.screens.Empleado
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Empleado
 
 @Composable
 fun EmployeeCardView(

@@ -13,10 +13,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Empleado
+import com.warh.restaurante.model.Producto
 import com.warh.restaurante.ui.components.*
 import com.warh.restaurante.utils.Screens
-
-data class Empleado(val id: Int, val nombreCompleto: String, val dni: String, val telefono: String, val direccion: String)
 
 @Composable
 fun ManagerScreen(

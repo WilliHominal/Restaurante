@@ -1,56 +1,69 @@
 <resources>
     <string name="app_name">Restaurante</string>
 
-    <string name="TITULO_INICIO">RESTAURANTE</string>
-    <string name="TITULO_LOGIN">RESTAURANTE</string>
-    <string name="TITULO_REGISTRARSE">RESTAURANTE</string>
-    <string name="TITULO_ADMINISTRACION">ADMINISTRACION</string>
-    <string name="TITULO_MI_CUENTA">MI CUENTA</string>
-    <string name="TITULO_NUEVO_DELIVERY">NUEVO DELIVERY</string>
-    <string name="TITULO_NUEVO_EMPLEADO">NUEVO EMPLEADO</string>
-    <string name="TITULO_NUEVO_PRODUCTO">NUEVO PRODUCTO</string>
-    <string name="TITULO_NUEVO_PEDIDO">NUEVO PEDIDO</string>
-    <string name="TITULO_MIS_PEDIDOS">MIS PEDIDOS</string>
+    <string name="TITULO_INICIO">RESTAURANT</string>
+    <string name="TITULO_LOGIN">RESTAURANT</string>
+    <string name="TITULO_REGISTRARSE">RESTAURANT</string>
+    <string name="TITULO_ADMINISTRACION">ADMINISTRATION</string>
+    <string name="TITULO_MI_CUENTA">MY ACCOUNT</string>
+    <string name="TITULO_NUEVO_DELIVERY">NEW DELIVERY</string>
+    <string name="TITULO_NUEVO_EMPLEADO">NEW EMPLOYEE</string>
+    <string name="TITULO_NUEVO_PRODUCTO">NEW PRODUCT</string>
+    <string name="TITULO_NUEVO_PEDIDO">NEW ORDER</string>
+    <string name="TITULO_MIS_PEDIDOS">MY ORDERS</string>
 
-    <string name="PLACEHOLDER_NOMBRE_COMPLETO">Nombre completo</string>
-    <string name="PLACEHOLDER_DNI">DNI</string>
-    <string name="PLACEHOLDER_DIRECCION">Dirección</string>
-    <string name="PLACEHOLDER_TELEFONO">Teléfono</string>
-    <string name="PLACEHOLDER_CATEGORIA">Categoría</string>
-    <string name="PLACEHOLDER_NOMBRE_PRODUCTO">Nombre</string>
-    <string name="PLACEHOLDER_PRECIO">Precio</string>
-    <string name="PLACEHOLDER_LINK_IMAGEN_PRODUCTO">Link imagen</string>
-    <string name="PLACEHOLDER_CORREO_ELECTRONICO">Correo electrónico</string>
-    <string name="PLACEHOLDER_CONTRASENA">Contraseña</string>
+    <string name="PLACEHOLDER_NOMBRE_COMPLETO">Name</string>
+    <string name="PLACEHOLDER_DNI">ID</string>
+    <string name="PLACEHOLDER_DIRECCION">Address</string>
+    <string name="PLACEHOLDER_TELEFONO">Phone number</string>
+    <string name="PLACEHOLDER_CATEGORIA">Category</string>
+    <string name="PLACEHOLDER_NOMBRE_PRODUCTO">Name</string>
+    <string name="PLACEHOLDER_PRECIO">Price</string>
+    <string name="PLACEHOLDER_LINK_IMAGEN_PRODUCTO">Image URL</string>
+    <string name="PLACEHOLDER_CORREO_ELECTRONICO">Email</string>
+    <string name="PLACEHOLDER_CONTRASENA">Password</string>
 
-    <string name="TEXTO_INICIAR_SESION">Iniciar sesión</string>
-    <string name="TEXTO_SIN_CUENTA_REGISTRATE">No tienes cuenta? Regístrate</string>
-    <string name="TEXTO_MENSAJE_SESION_NO_INICIADA">Debes iniciar sesión para realizar nuevos pedidos!</string>
-    <string name="TEXTO_PRODUCTOS">PRODUCTOS</string>
-    <string name="TEXTO_UBICACION">UBICACIÓN</string>
-    <string name="TEXTO_CONTACTO">CONTACTO</string>
-    <string name="TEXTO_NUMERO_WHATSAPP">+549 3496 000000</string>
-    <string name="TEXTO_NUMERO_TELEFONO_FIJO">+54 03496 000000</string>
+    <string name="TEXTO_INICIAR_SESION">Login</string>
+    <string name="TEXTO_SIN_CUENTA_REGISTRATE">Not a member? Create an account</string>
+    <string name="TEXTO_MENSAJE_SESION_NO_INICIADA">You must be logged in to make a new order!</string>
+    <string name="TEXTO_PRODUCTOS">PRODUCTS</string>
+    <string name="TEXTO_UBICACION">LOCATION</string>
+    <string name="TEXTO_CONTACTO">CONTACT US</string>
+    <string name="TEXTO_NUMERO_WHATSAPP" translatable="false">+549 3496 000000</string>
+    <string name="TEXTO_NUMERO_TELEFONO_FIJO" translatable="false">+54 03496 000000</string>
 
-    <string name="TEXTO_DNI_EMPLEADO_TEMPLATE">DNI: %s</string>
-    <string name="TEXTO_DIR_EMPLEADO_TEMPLATE">DIR: %s</string>
-    <string name="TEXTO_TEL_EMPLEADO_TEMPLATE">TEL: %s</string>
-    <string name="TEXTO_ID_TEMPLATE">#%s</string>
-    <string name="TEXTO_PRECIO_PRODUCTO_TEMPLATE">$%s</string>
-    <string name="TEXTO_PEDIDO_NUMERO_TEMPLATE">PEDIDO Nº%s</string>
-    <string name="TEXTO_PRODUCTO_PEDIDO_TEMPLATE">%s (%s)</string>
-    <string name="TEXTO_TOTAL_PEDIDO_TEMPLATE">TOTAL $%s</string>
+    <string name="TEXTO_DNI_EMPLEADO_TEMPLATE">ID: %s</string>
+    <string name="TEXTO_DIR_EMPLEADO_TEMPLATE">ADDR: %s</string>
+    <string name="TEXTO_TEL_EMPLEADO_TEMPLATE">NUM: %s</string>
+    <string name="TEXTO_ID_TEMPLATE" translatable="false">#%s</string>
+    <string name="TEXTO_PRECIO_PRODUCTO_TEMPLATE" translatable="false">$%s</string>
+    <string name="TEXTO_PEDIDO_NUMERO_TEMPLATE">ORDER N%s</string>
+    <string name="TEXTO_PRODUCTO_PEDIDO_TEMPLATE" translatable="false">%s (%s)</string>
+    <string name="TEXTO_TOTAL_PEDIDO_TEMPLATE" translatable="false">TOTAL $%s</string>
 
-    <string name="BOTON_GUARDAR">GUARDAR</string>
-    <string name="BOTON_INICIAR_SESION">INICIAR SESION</string>
-    <string name="BOTON_CONTINUAR">CONTINUAR</string>
-    <string name="BOTON_REGISTRARSE">REGISTRARSE</string>
-    <string name="BOTON_CERRAR_SESION">CERRAR SESION</string>
+    <string name="BOTON_GUARDAR">SAVE</string>
+    <string name="BOTON_INICIAR_SESION">LOGIN</string>
+    <string name="BOTON_CONTINUAR">NEXT</string>
+    <string name="BOTON_REGISTRARSE">REGISTER</string>
+    <string name="BOTON_CERRAR_SESION">LOGOUT</string>
 
-    <string name="BOTTOMBAR_TITULO_PRODUCTOS">Productos</string>
-    <string name="BOTTOMBAR_TITULO_EMPLEADOS">Empleados</string>
+    <string name="BOTTOMBAR_TITULO_PRODUCTOS">Products</string>
+    <string name="BOTTOMBAR_TITULO_EMPLEADOS">Employee</string>
     <string name="BOTTOMBAR_TITULO_DELIVERY">Delivery</string>
 
-    <string name="MARCADOR_GMAPS_TITULO">Restaurante</string>
-    <string name="MARCADOR_GMAPS_DESCRIPCION">Ubicación del Restaurante</string>
+    <string name="MARCADOR_GMAPS_TITULO">Restaurant</string>
+    <string name="MARCADOR_GMAPS_DESCRIPCION">Restaurant location</string>
+
+    <string name="MENSAJE_ERROR_CORREO_NO_VALIDO">INVALID EMAIL.</string>
+    <string name="MENSAJE_ERROR_CONTRASENA_NO_VALIDA">INVALID PASSWORD (LETTERS, NUMBERS, DASH, UNDERSCORE).</string>
+    <string name="MENSAJE_ERROR_CONTRASENA_CORTA">PASSWORD MUST CONTAINS AT LEAST 6 CHARS.</string>
+    <string name="MENSAJE_ERROR_NOMBRE_NO_VALIDO">INVALID NAME.</string>
+    <string name="MENSAJE_ERROR_DIRECCION_NO_VALIDO">INVALID ADDRESS (ST. NAME NUMBER).</string>
+    <string name="MENSAJE_ERROR_TELEFONO_NO_VALIDO">INVALID PHONE NUMBER.</string>
+    <string name="MENSAJE_ERROR_CAMPOS_INCOMPLETOS">YOU MUST COMPLETE ALL FIELDS.</string>
+    <string name="MENSAJE_REGISTRO_EXITOSO">SUCCESSFUL REGISTRATION.</string>
+    <string name="MENSAJE_INICIO_SESION_EXITOSO">LOGGED IN SUCCESSFULLY.</string>
+    <string name="MENSAJE_ERROR_DATOS_INCORRECTOS">WRONG USERNAME/PASSWORD</string>
+    <string name="MENSAJE_ERROR_CORREO_EN_USO">EMAIL ALREADY IN USE.</string>
+
 </resources>

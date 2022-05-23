@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Producto
 import com.warh.restaurante.ui.components.CustomDrawer
 import com.warh.restaurante.ui.components.CustomTopBar
 import com.warh.restaurante.ui.components.ProductCardView
@@ -33,8 +34,6 @@ import com.warh.restaurante.utils.MapStyle
 import com.warh.restaurante.utils.Screens
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
-data class Producto(val id: Int, val nombre: String, var precio: String, val imagenLink: String, val categoria: String)
 
 @Composable
 fun HomeScreen(

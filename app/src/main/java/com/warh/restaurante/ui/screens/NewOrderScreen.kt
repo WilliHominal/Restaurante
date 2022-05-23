@@ -26,6 +26,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Producto
+import com.warh.restaurante.model.ProductoComprado
 import com.warh.restaurante.ui.components.CustomTopBar
 import com.warh.restaurante.ui.components.ProductSearchView
 

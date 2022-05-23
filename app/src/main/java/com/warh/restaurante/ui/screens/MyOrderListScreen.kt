@@ -12,12 +12,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Pedido
+import com.warh.restaurante.model.Producto
+import com.warh.restaurante.model.ProductoComprado
 import com.warh.restaurante.ui.components.CustomTopBar
 import com.warh.restaurante.ui.components.OrderCardView
 import java.util.*
-
-data class ProductoComprado(val producto: Producto, val precioUnitarioPagado: String, var cantidadTotal: Int)
-data class Pedido(val id: Int, val productos: List<ProductoComprado>, val estado: String, val timestamp: Long)
 
 @Composable
 fun MyOrderListScreen(

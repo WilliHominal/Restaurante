@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.warh.restaurante.R
-import com.warh.restaurante.ui.screens.Producto
+import com.warh.restaurante.model.Producto
 
 @Composable
 fun ManagerProductCardView(
