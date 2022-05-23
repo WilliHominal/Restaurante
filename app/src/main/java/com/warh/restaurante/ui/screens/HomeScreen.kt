@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.maps.android.compose.*
 import com.warh.restaurante.R
 import com.warh.restaurante.model.Producto
@@ -41,6 +42,7 @@ fun HomeScreen(
 ) {
     val context = LocalContext.current
 
+    //region GMAPS-VARIABLES
     val esperanzaLatLng = LatLng(-31.44892023020554, -60.93041943633306)
     val posicionCamaraMaps = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(esperanzaLatLng, 16f)
@@ -59,6 +61,7 @@ fun HomeScreen(
         zoomGesturesEnabled = false
     )
     val propiedadesMapa = MapProperties(mapType = MapType.NORMAL, mapStyleOptions = MapStyleOptions(MapStyle.json))
+    //endregion
 
     //TODO cambiar data source de los productos
     val listaProductos = listOf(
@@ -71,10 +74,10 @@ fun HomeScreen(
     val scaffoldState = rememberScaffoldState()
     val scaffoldScope = rememberCoroutineScope()
 
-    //TODO revisar valor inicial de usuarioLogueado
-    val usuarioLogueado by remember { mutableStateOf(true) }
+    var usuarioLogueado by remember { mutableStateOf(FirebaseAuth.getInstance().currentUser)}
 
     var notificacionExtendida by remember { mutableStateOf(false) }
+    var mensajeNotificacion by remember { mutableStateOf("") }
 
     suspend fun mostrarAviso() {
         if (!notificacionExtendida) {
@@ -91,14 +94,38 @@ fun HomeScreen(
             CustomTopBar(
                 titulo = context.getString(R.string.TITULO_INICIO),
                 permiteVolver = false,
-                usuarioLogueado = false,
-                usuarioImagenLink = context.getString(R.string.TEXTO_INICIAR_SESION),
-                accionBotonIzquierda = { if (usuarioLogueado) scaffoldScope.launch{ scaffoldState.drawerState.open() } else scaffoldScope.launch{ mostrarAviso() } },
-                accionBotonDerecha = { navController.navigate(Screens.LoginScreen.route) },
+                usuarioLogueado = usuarioLogueado != null,
+                usuarioImagenLink =
+                    usuarioLogueado?.let {
+                        //TODO cambiar por imagen perfil
+                        "https://picsum.photos/100"
+                    } ?: context.getString(R.string.TEXTO_INICIAR_SESION),
+                accionBotonIzquierda = {
+                    usuarioLogueado?.let {
+                        scaffoldScope.launch{
+                            scaffoldState.drawerState.open()
+                        }
+                    } ?: run {
+                        scaffoldScope.launch{
+                            mensajeNotificacion = context.getString(R.string.TEXTO_MENSAJE_SESION_NO_INICIADA)
+                            mostrarAviso()
+                        }
+                    }
+                },
+                accionBotonDerecha = {
+                    usuarioLogueado?.let {
+                        FirebaseAuth.getInstance().signOut()
+                        usuarioLogueado = null
+                        scaffoldScope.launch {
+                            mensajeNotificacion = context.getString(R.string.TEXTO_MENSAJE_SESION_CERRADA)
+                            mostrarAviso()
+                        }
+                    } ?: navController.navigate(Screens.LoginScreen.route)
+                },
             )
         },
         drawerContent = {
-            CustomDrawer(usuarioLogueado, navController)
+            CustomDrawer(usuarioLogueado != null, navController)
         },
         drawerGesturesEnabled = scaffoldState.drawerState.isOpen
     ) { scaffoldPadding ->
@@ -119,7 +146,7 @@ fun HomeScreen(
                 color = Color.DarkGray
             ){
                 Text(
-                    context.getString(R.string.TEXTO_MENSAJE_SESION_NO_INICIADA),
+                    mensajeNotificacion,
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
                     color = MaterialTheme.colors.onPrimary,
                     style = MaterialTheme.typography.caption
@@ -158,9 +185,7 @@ fun HomeScreen(
                         if (numeroProducto < listaProductos.size-1)
                             numeroProducto++
                     }
-                ) {
-                    /*TODO accion click product card*/
-                }
+                )
             }
 
             item { Spacer(Modifier.padding(15.dp)) }

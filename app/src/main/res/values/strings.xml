@@ -26,6 +26,7 @@
     <string name="TEXTO_INICIAR_SESION">Login</string>
     <string name="TEXTO_SIN_CUENTA_REGISTRATE">Not a member? Create an account</string>
     <string name="TEXTO_MENSAJE_SESION_NO_INICIADA">You must be logged in to make a new order!</string>
+    <string name="TEXTO_MENSAJE_SESION_CERRADA">Logged out successfully.</string>
     <string name="TEXTO_PRODUCTOS">PRODUCTS</string>
     <string name="TEXTO_UBICACION">LOCATION</string>
     <string name="TEXTO_CONTACTO">CONTACT US</string>

@@ -28,13 +28,13 @@ fun ProductCardView(
     precioProducto: String,
     accionClickIzquierda: () -> Unit,
     accionClickDerecha: () -> Unit,
-    accionClickCard: () -> Unit,
+    accionClickCard: (() -> Unit)? = null,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                accionClickCard()
+                accionClickCard?.let { it() }
             }
             .size(250.dp)
             .background(color = Color.Transparent)

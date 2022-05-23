@@ -52,4 +52,5 @@
     <string name="MENSAJE_INICIO_SESION_EXITOSO">SESIÓN INICIADA.</string>
     <string name="MENSAJE_ERROR_DATOS_INCORRECTOS">DATOS INCORRECTOS.</string>
     <string name="MENSAJE_ERROR_CORREO_EN_USO">EL CORREO YA ESTÁ EN USO.</string>
+    <string name="TEXTO_MENSAJE_SESION_CERRADA">Sesión cerrada correctamente.</string>
 </resources>
