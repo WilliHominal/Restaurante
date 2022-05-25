@@ -12,12 +12,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.warh.restaurante.R
+import com.warh.restaurante.model.Producto
 import com.warh.restaurante.ui.components.CustomTextField
 import com.warh.restaurante.ui.components.CustomTopBar
+import com.warh.restaurante.viewmodel.ProductViewModel
 
 @Composable
 fun AddProductScreen(
-    navController: NavController
+    navController: NavController,
+    productViewModel: ProductViewModel
 ) {
     val context = LocalContext.current
 
@@ -73,7 +76,7 @@ fun AddProductScreen(
             Spacer(Modifier.padding(5.dp))
 
             Button(
-                onClick = { /*TODO acción Guardar Producto (con verificacion de datos validos)*/ },
+                onClick = { productViewModel.agregarProducto(Producto(0,nombreProducto,precioProducto,linkImagenProducto,categoriaProducto))/*TODO acción Guardar Producto (con verificacion de datos validos)*/ },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(

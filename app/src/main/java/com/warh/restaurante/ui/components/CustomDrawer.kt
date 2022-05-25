@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,12 +20,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.google.firebase.auth.FirebaseUser
 import com.warh.restaurante.R
 import com.warh.restaurante.utils.Screens
+import com.warh.restaurante.viewmodel.UserViewModel
 
 @Composable
-fun CustomDrawer(usuarioLogueado: Boolean, navController: NavController) {
+fun CustomDrawer(usuario: FirebaseUser?, viewModel: UserViewModel, navController: NavController) {
     val context = LocalContext.current
+
+    var tipoUsuario by remember { mutableStateOf("") }
+
+    usuario?.let {
+        viewModel.rangoCuenta(usuario.email!!){ rango: String ->
+            tipoUsuario = rango
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -42,15 +52,14 @@ fun CustomDrawer(usuarioLogueado: Boolean, navController: NavController) {
             Spacer(Modifier.padding(10.dp))
 
             Image(
-                painter = if (usuarioLogueado) {
+                painter = usuario?.let {
                     rememberAsyncImagePainter(
                         "https://picsum.photos/100",
                         placeholder = painterResource(
                             R.drawable.placeholder
                         )
                     )
-                } else
-                    painterResource(id = R.drawable.placeholder),
+                } ?: painterResource(id = R.drawable.placeholder),
                 contentDescription = "Imagen de perfil",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -59,17 +68,16 @@ fun CustomDrawer(usuarioLogueado: Boolean, navController: NavController) {
                     .border(1.dp, Color.Black, CircleShape)
             )
 
-            if (usuarioLogueado) //TODO cambiar nombre completo por nombre del usuario
-                Text("NOMBRE COMPLETO", style = MaterialTheme.typography.caption)
-            else
-                Text(
-                    context.getString(R.string.TEXTO_INICIAR_SESION),
-                    style = MaterialTheme.typography.caption,
-                    modifier = Modifier.clickable {
-                        navController.navigate(
-                            Screens.LoginScreen.route
-                        )
-                    })
+            usuario?.let {
+                Text(usuario.displayName!!, style = MaterialTheme.typography.caption)
+            } ?: Text(
+                context.getString(R.string.TEXTO_INICIAR_SESION),
+                style = MaterialTheme.typography.caption,
+                modifier = Modifier.clickable {
+                    navController.navigate(
+                        Screens.LoginScreen.route
+                    )
+                })
 
             Spacer(Modifier.padding(10.dp))
         }
@@ -82,31 +90,49 @@ fun CustomDrawer(usuarioLogueado: Boolean, navController: NavController) {
                 .padding(15.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            if (usuarioLogueado) {
-                Text(
-                    context.getString(Screens.NewOrderScreen.title),
-                    modifier = Modifier
-                        .clickable { navController.navigate(Screens.NewOrderScreen.route) }
-                        .fillMaxWidth()
-                )
-                Text(
-                    context.getString(Screens.MyOrderListScreen.title),
-                    modifier = Modifier
-                        .clickable { navController.navigate(Screens.MyOrderListScreen.route) }
-                        .fillMaxWidth()
-                )
-                Text(
-                    context.getString(Screens.MyAccountScreen.title),
-                    modifier = Modifier
-                        .clickable { navController.navigate(Screens.MyAccountScreen.route) }
-                        .fillMaxWidth()
-                )
-                Text(
-                    context.getString(R.string.BOTON_CERRAR_SESION),
-                    modifier = Modifier
-                        .clickable { /*TODO Cerrar sesión*/ }
-                        .fillMaxWidth()
-                )
+            usuario?.let {
+                when (tipoUsuario) {
+                    "NORMAL" -> {
+                        Text(
+                            context.getString(Screens.NewOrderScreen.title),
+                            modifier = Modifier
+                                .clickable { navController.navigate(Screens.NewOrderScreen.route) }
+                                .fillMaxWidth()
+                        )
+                        Text(
+                            context.getString(Screens.MyOrderListScreen.title),
+                            modifier = Modifier
+                                .clickable { navController.navigate(Screens.MyOrderListScreen.route) }
+                                .fillMaxWidth()
+                        )
+                        Text(
+                            context.getString(Screens.MyAccountScreen.title),
+                            modifier = Modifier
+                                .clickable { navController.navigate(Screens.MyAccountScreen.route) }
+                                .fillMaxWidth()
+                        )
+                        Text(
+                            context.getString(R.string.BOTON_CERRAR_SESION),
+                            modifier = Modifier
+                                .clickable { /*TODO Cerrar sesión*/ }
+                                .fillMaxWidth()
+                        )
+                    }
+                    "MANAGER" -> {
+                        Text(
+                            context.getString(Screens.ManagerScreen.title),
+                            modifier = Modifier
+                                .clickable { navController.navigate(Screens.ManagerScreen.route) }
+                                .fillMaxWidth()
+                        )
+                    }
+                    "EMPLEADO" -> {
+
+                    }
+                    "DELIVERY" -> {
+
+                    }
+                }
             }
         }
     }

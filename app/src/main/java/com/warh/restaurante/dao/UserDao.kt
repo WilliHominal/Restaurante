@@ -3,7 +3,12 @@ package com.warh.restaurante.dao
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.warh.restaurante.utils.exceptions.FirebaseDatabaseRequestCancelledException
+import com.warh.restaurante.utils.exceptions.UserDoesntExistsException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -23,6 +28,11 @@ interface UserDao {
         correo: String,
         contrasena: String
     ): AuthResult?
+
+    fun rangoCuenta(
+        correo: String,
+        callback: (String) -> Unit
+    )
 }
 
 class UserDaoImpl : UserDao {
@@ -78,9 +88,26 @@ class UserDaoImpl : UserDao {
     ): AuthResult? {
         return try {
             auth.signInWithEmailAndPassword(correo, contrasena).await()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             null
         }
+    }
+
+    override fun rangoCuenta(correo: String, callback: (String) -> Unit) {
+        val correoV2 = correo.replace(".", ",").replace("@", " ")
+        database.child(USERS_PATH).child(correoV2).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    callback.invoke(snapshot.child("rango").value.toString())
+                } else {
+                    throw UserDoesntExistsException()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                throw FirebaseDatabaseRequestCancelledException("rangoCuenta")
+            }
+        })
     }
 }

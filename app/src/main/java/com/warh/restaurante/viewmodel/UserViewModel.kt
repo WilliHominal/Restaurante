@@ -22,4 +22,8 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         contrasena: String
     ) = userRepository.iniciarSesionCuenta(correo, contrasena)
 
+    fun rangoCuenta(
+        correo: String,
+        callback: (String) -> Unit
+    ) = userRepository.rangoCuenta(correo, callback)
 }

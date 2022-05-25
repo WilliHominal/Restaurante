@@ -17,10 +17,12 @@ import com.warh.restaurante.model.Empleado
 import com.warh.restaurante.model.Producto
 import com.warh.restaurante.ui.components.*
 import com.warh.restaurante.utils.Screens
+import com.warh.restaurante.viewmodel.ProductViewModel
 
 @Composable
 fun ManagerScreen(
-    navController: NavController
+    navController: NavController,
+    productViewModel: ProductViewModel
 ) {
     val context = LocalContext.current
 
@@ -35,10 +37,13 @@ fun ManagerScreen(
         Empleado(1, "DELIVERY 2", "88.888.888", "+5493496888888", "CALLE Y NUMERO 8888")
     )
 
-    val lista0 = listOf(
-        Producto(0, "PRODUCTO 1", "100", "https://picsum.photos/110", "CAT A"),
-        Producto(1, "PRODUCTO 2", "200", "https://picsum.photos/120", "CAT B"),
-    )
+    var listaProductos by remember { mutableStateOf(emptyList<Producto>()) }
+
+    LaunchedEffect(true){
+        productViewModel.listarProductos {
+            listaProductos = it
+        }
+    }
 
     var seleccionado by remember { mutableStateOf(0) }
 
@@ -83,7 +88,7 @@ fun ManagerScreen(
         ){
             items(
                 when(seleccionado){
-                    0 -> lista0
+                    0 -> listaProductos
                     1 -> lista1
                     2 -> lista2
                     else -> throw ClassNotFoundException("Opción $seleccionado de BottomBar no existe")

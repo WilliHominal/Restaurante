@@ -30,7 +30,7 @@ import kotlinx.coroutines.*
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    viewModel: UserViewModel
+    userViewModel: UserViewModel
 ) {
     val context = LocalContext.current
 
@@ -121,7 +121,7 @@ fun RegisterScreen(
 
             Button(
                 onClick = {
-                    viewModel.viewModelScope.launch {
+                    userViewModel.viewModelScope.launch {
 
                         botonRegistrarseHabilitado = false
 
@@ -129,7 +129,7 @@ fun RegisterScreen(
 
                         val corrutinaRegistro =
                             if (verificacion == ErrorCodes.RegistroExitoso)
-                                async { viewModel.registrarUsuario(correo, contrasena, nombreCompleto, direccion, telefono) }
+                                async { userViewModel.registrarUsuario(correo, contrasena, nombreCompleto, direccion, telefono) }
                             else
                                 null
 

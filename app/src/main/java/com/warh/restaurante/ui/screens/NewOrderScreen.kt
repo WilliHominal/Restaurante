@@ -30,30 +30,23 @@ import com.warh.restaurante.model.Producto
 import com.warh.restaurante.model.ProductoComprado
 import com.warh.restaurante.ui.components.CustomTopBar
 import com.warh.restaurante.ui.components.ProductSearchView
+import com.warh.restaurante.viewmodel.ProductViewModel
 
 @Composable
 fun NewOrderScreen(
-    navController: NavController
+    navController: NavController,
+    productViewModel: ProductViewModel
 ) {
     val context = LocalContext.current
 
     var textoBusqueda by remember { mutableStateOf("") }
 
-    //TODO obtener lista de productos
-    val listaProductos = listOf(
-        Producto(0, "Aproducto", "205", "https://picsum.photos/300", "CAT A"),
-        Producto(1, "AAproducto", "50", "https://picsum.photos/200", "CAT B"),
-        Producto(2, "Bproducto", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(3, "Aproducto2", "50", "https://picsum.photos/200", "CAT B"),
-        Producto(4, "Aproducto3", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(5, "Aproducto4", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(6, "Aproducto5", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(7, "Aproducto6", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(8, "Aproducto7", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(9, "Aproducto8", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(10, "Aproducto9", "350", "https://picsum.photos/350", "CAT C"),
-        Producto(11, "Aproducto10", "350", "https://picsum.photos/350", "CAT C"),
-    )
+    var listaProductos by remember { mutableStateOf(emptyList<Producto>()) }
+    LaunchedEffect(true){
+        productViewModel.listarProductos {
+            listaProductos = it
+        }
+    }
 
     val carritoCompra = remember { mutableStateListOf<ProductoComprado>() }
 
@@ -91,7 +84,8 @@ fun NewOrderScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(scaffoldPadding)
-                .padding(horizontal = 25.dp).padding(top = 15.dp)
+                .padding(horizontal = 25.dp)
+                .padding(top = 15.dp)
                 .fillMaxSize()
         ) {
             item {

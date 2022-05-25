@@ -31,7 +31,7 @@ import kotlinx.coroutines.*
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: UserViewModel
+    userViewModel: UserViewModel
 ) {
     val context = LocalContext.current
 
@@ -112,14 +112,14 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                    viewModel.viewModelScope.launch {
+                    userViewModel.viewModelScope.launch {
                         botonInicarSesionHabilitado = false
 
                         val verificacion = validarDatos(correo, contrasena)
 
                         val corrutinaRegistro =
                             if (verificacion == ErrorCodes.InicioSesionExitoso)
-                                async { viewModel.iniciarSesion(correo, contrasena) }
+                                async { userViewModel.iniciarSesion(correo, contrasena) }
                             else
                                 null
 

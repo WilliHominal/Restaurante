@@ -33,12 +33,15 @@ import com.warh.restaurante.ui.components.CustomTopBar
 import com.warh.restaurante.ui.components.ProductCardView
 import com.warh.restaurante.utils.MapStyle
 import com.warh.restaurante.utils.Screens
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.warh.restaurante.viewmodel.ProductViewModel
+import com.warh.restaurante.viewmodel.UserViewModel
+import kotlinx.coroutines.*
 
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    userViewModel: UserViewModel,
+    productViewModel: ProductViewModel
 ) {
     val context = LocalContext.current
 
@@ -63,12 +66,7 @@ fun HomeScreen(
     val propiedadesMapa = MapProperties(mapType = MapType.NORMAL, mapStyleOptions = MapStyleOptions(MapStyle.json))
     //endregion
 
-    //TODO cambiar data source de los productos
-    val listaProductos = listOf(
-        Producto(0, "Producto ejemplo 1", "205", "https://picsum.photos/300", "CAT A"),
-        Producto(1, "Producto ejemplo 2", "50", "https://picsum.photos/200", "CAT B"),
-        Producto(2, "Producto ejemplo 3", "350", "https://picsum.photos/350", "CAT C"),
-    )
+    var listaProductos by remember { mutableStateOf(listOf<Producto>()) }
     var numeroProducto by remember { mutableStateOf(0) }
 
     val scaffoldState = rememberScaffoldState()
@@ -78,6 +76,12 @@ fun HomeScreen(
 
     var notificacionExtendida by remember { mutableStateOf(false) }
     var mensajeNotificacion by remember { mutableStateOf("") }
+
+    LaunchedEffect(true){
+        productViewModel.listarProductos {
+            listaProductos = it
+        }
+    }
 
     suspend fun mostrarAviso() {
         if (!notificacionExtendida) {
@@ -125,7 +129,11 @@ fun HomeScreen(
             )
         },
         drawerContent = {
-            CustomDrawer(usuarioLogueado != null, navController)
+            CustomDrawer(
+                usuarioLogueado,
+                userViewModel,
+                navController
+            )
         },
         drawerGesturesEnabled = scaffoldState.drawerState.isOpen
     ) { scaffoldPadding ->
@@ -172,20 +180,22 @@ fun HomeScreen(
                 )
             }
 
-            item {
-                ProductCardView(
-                    imagenProductoLink = listaProductos[numeroProducto].imagenLink,
-                    nombreProducto = listaProductos[numeroProducto].nombre,
-                    precioProducto = listaProductos[numeroProducto].precio,
-                    accionClickIzquierda = {
-                        if (numeroProducto > 0)
-                            numeroProducto--
-                    },
-                    accionClickDerecha = {
-                        if (numeroProducto < listaProductos.size-1)
-                            numeroProducto++
-                    }
-                )
+            if (listaProductos.isNotEmpty()){
+                item {
+                    ProductCardView(
+                        imagenProductoLink = listaProductos[numeroProducto].imagenLink,
+                        nombreProducto = listaProductos[numeroProducto].nombre,
+                        precioProducto = listaProductos[numeroProducto].precio,
+                        accionClickIzquierda = {
+                            if (numeroProducto > 0)
+                                numeroProducto--
+                        },
+                        accionClickDerecha = {
+                            if (numeroProducto < listaProductos.size-1)
+                                numeroProducto++
+                        }
+                    )
+                }
             }
 
             item { Spacer(Modifier.padding(15.dp)) }

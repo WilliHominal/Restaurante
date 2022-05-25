@@ -8,4 +8,6 @@ class UserRepository @Inject constructor(private val userDao: UserDao) {
     suspend fun registrarCuenta(correo: String, contrasena: String, nombreCompleto: String, direccion: String, telefono: String, scope: CoroutineScope) = userDao.registrarCuenta(correo, contrasena, nombreCompleto, direccion, telefono, scope)
 
     suspend fun iniciarSesionCuenta(correo: String, contrasena: String) = userDao.iniciarSesionCuenta(correo, contrasena)
+
+    fun rangoCuenta(correo: String, callback: (String) -> Unit) = userDao.rangoCuenta(correo, callback)
 }

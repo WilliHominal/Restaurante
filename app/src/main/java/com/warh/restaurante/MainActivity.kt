@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.warh.restaurante.ui.screens.*
 import com.warh.restaurante.ui.theme.RestauranteTheme
 import com.warh.restaurante.utils.Screens
+import com.warh.restaurante.viewmodel.ProductViewModel
 import com.warh.restaurante.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,29 +20,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel by viewModels<UserViewModel>()
+            val userViewModel by viewModels<UserViewModel>()
+            val productViewModel by viewModels<ProductViewModel>()
 
-            RestauranteTheme { NavigationHost(viewModel) }
+            RestauranteTheme { NavigationHost(userViewModel, productViewModel) }
         }
     }
 }
 
 @Composable
-fun NavigationHost(viewModel: UserViewModel){
+fun NavigationHost(userViewModel: UserViewModel, productViewModel: ProductViewModel){
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Screens.HomeScreen.route){
         composable(Screens.HomeScreen.route){
-            HomeScreen(navController)
+            HomeScreen(navController, userViewModel = userViewModel, productViewModel = productViewModel)
         }
         composable(Screens.LoginScreen.route){
-            LoginScreen(navController, viewModel)
+            LoginScreen(navController, userViewModel = userViewModel)
         }
         composable(Screens.RegisterScreen.route){
-            RegisterScreen(navController, viewModel)
+            RegisterScreen(navController, userViewModel = userViewModel)
         }
         composable(Screens.NewOrderScreen.route){
-            NewOrderScreen(navController)
+            NewOrderScreen(navController, productViewModel = productViewModel)
         }
         composable(Screens.MyOrderListScreen.route){
             MyOrderListScreen(navController)
@@ -50,10 +52,10 @@ fun NavigationHost(viewModel: UserViewModel){
             MyAccountScreen(navController)
         }
         composable(Screens.ManagerScreen.route){
-            ManagerScreen(navController)
+            ManagerScreen(navController, productViewModel = productViewModel)
         }
         composable(Screens.AddProductScreen.route){
-            AddProductScreen(navController)
+            AddProductScreen(navController, productViewModel = productViewModel)
         }
         composable(Screens.AddEmployeeScreen.route){
             AddEmployeeScreen(navController)
